@@ -2,6 +2,8 @@ from datetime import *
 import os
 import requests
 from bs4 import BeautifulSoup
+from telegram import Update
+
 from config import NEWS_URL, HEADERS
 
 
@@ -51,5 +53,3 @@ def get_news():
     time_now = datetime.now().strftime("%H:%M:%S")
     news_list = [f"🍌{h.text.strip()}\n {h['href']}" for h in headlines]
     return f"Останні новини на {time_now}:\n\n" + "\n\n".join(news_list)
-
-

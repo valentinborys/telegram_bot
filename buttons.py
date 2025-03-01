@@ -67,3 +67,10 @@ async def button(update: Update, context: CallbackContext):
         await query.message.delete()
 
         await query.message.reply_text(text=joke_text, reply_markup=get_back_keyboard())
+
+    elif query.data == 'song':
+        await query.message.delete()
+        await query.message.reply_text(
+            text="Приємне відео для бібізян 🐒:\nhttps://www.youtube.com/watch?v=_aJZMR8vJXU",
+            reply_markup=get_back_keyboard()
+        )

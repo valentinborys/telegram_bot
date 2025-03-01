@@ -18,6 +18,7 @@ def main():
     application.add_handler(CommandHandler("news", news))
     application.add_handler(CommandHandler("help", help_command))
     application.add_handler(CommandHandler("joke", get_joke))
+    application.add_handler(CommandHandler("song", song))
 
     application.add_handler(CallbackQueryHandler(button))
 
