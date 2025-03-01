@@ -12,7 +12,8 @@ async def start(update, context: CallbackContext):
         [InlineKeyboardButton("Курс валют 💸", callback_data='exchange_rate')],
         [InlineKeyboardButton("Новини 🗞", callback_data='news')],
         [InlineKeyboardButton("Бібізян Дімасік 🙈", callback_data='monkey_images')],
-        [InlineKeyboardButton("Анекдоти від бібзяна 😂", callback_data='joke')]
+        [InlineKeyboardButton("Анекдоти від бібзяна 😂", callback_data='joke')],
+        [InlineKeyboardButton("Пісня для бібізян 🐒", callback_data='song')]
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -71,12 +72,24 @@ async def get_joke(update: Update, context):
     await update.message.reply_text(joke_text)
 
 
+# /song
+async def song(update: Update, context: CallbackContext):
+    await send_video_link(update)
+
+
+async def send_video_link(update: Update):
+    youtube_video_url = "https://www.youtube.com/watch?v=_aJZMR8vJXU&ab_channel=%D0%9A%D1%83%D1%80%D0%B3%D0%B0%D0%BD-Topic"
+    await update.message.reply_text(f"Приємн видео о бібізянах: 🐒\n{youtube_video_url}")
+
+
+
 def get_main_keyboard():
     keyboard = [
         [InlineKeyboardButton("Курс валют 💸", callback_data='exchange_rate')],
         [InlineKeyboardButton("Новини 🗞", callback_data='news')],
         [InlineKeyboardButton("Бібізян Дімасік 🙈", callback_data='monkey_images')],
-        [InlineKeyboardButton("Анекдоти від бібзяна 😂", callback_data='joke')]
+        [InlineKeyboardButton("Анекдоти від бібізяна 😂", callback_data='joke')],
+        [InlineKeyboardButton("Пісня для бібізян 🐒", callback_data='song')]
     ]
     return InlineKeyboardMarkup(keyboard)
 
