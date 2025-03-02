@@ -1,5 +1,5 @@
 import logging
-import os
+import asyncio
 import telegram
 import azure.functions as func
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler
@@ -40,6 +40,21 @@ async def set_webhook():
         await app.bot.set_webhook(url=WEBHOOK_URL)
         print("Webhook установлен!")
 
+
+def main():
+    application = Application.builder().token(TOKEN).build()
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("rate", rate))
+    application.add_handler(CommandHandler("news", news))
+    application.add_handler(CommandHandler("help", help_command))
+    application.add_handler(CommandHandler("joke", get_joke))
+    application.add_handler(CommandHandler("song", song))
+
+    application.add_handler(CallbackQueryHandler(button))
+
+    print("Бот працює...")
+    application.run_polling()
+
 if __name__ == "__main__":
-    import asyncio
+    main()
     asyncio.run(set_webhook())
