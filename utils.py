@@ -45,7 +45,7 @@ def get_news():
 
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    headlines = soup.select(".article_title a")[:4]
+    headlines = soup.select(".c-card__link")[:4]
 
     if not headlines:
         return "Не вийшло отримати новини 😔"
